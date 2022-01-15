@@ -6,15 +6,14 @@ def RunRss():
     currentdir = os.path.dirname(__file__)
     while True:
         now = datetime.utcnow() + timedelta(hours=8)  # Beijing time
-        if now.hour in set(
-                range(0, 24, hoursdiff)
-        ) and now.minute <= 5:  # every 3 hours, 0~5 second is ok
+        # if start the python scripts, sleep 'hoursdiff' time; otherwise sleep 5 minutes and come to next loop
+        if now.hour in set(range(0, 24, hoursdiff)) and now.minute <= 5:  # every 3 hours, 0~5 minutes is ok
             os.system('python3 ' + os.path.join(currentdir, 'thepaperRSS.py'))
             os.system('python3 ' + os.path.join(currentdir, 'reutersRSS.py'))
             os.system('python3 ' + os.path.join(currentdir, 'jwviewRSS.py'))
             time.sleep(hoursdiff * 3600)
         else:
-            time.sleep(5 * 60)
+            time.sleep(5 * 60)  # according to the now.minute
 
 
 def createDaemon():
