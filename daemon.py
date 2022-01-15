@@ -12,7 +12,9 @@ def RunRss():
             os.system('python3 ' + os.path.join(currentdir, 'thepaperRSS.py'))
             os.system('python3 ' + os.path.join(currentdir, 'reutersRSS.py'))
             os.system('python3 ' + os.path.join(currentdir, 'jwviewRSS.py'))
-        time.sleep(hoursdiff * 3600)
+            time.sleep(hoursdiff * 3600)
+        else:
+            time.sleep(5 * 60)
 
 
 def createDaemon():
