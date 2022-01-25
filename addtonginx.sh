@@ -18,7 +18,9 @@ server {
 }
 
 server {
-        listen 443 ssl;
+        # listen 443 ssl;
+        listen 127.0.0.1:55014 ssl http2 proxy_protocol;
+        set_real_ip_from 127.0.0.1;
         server_name $domain;
         ssl_certificate  $(pwd)/fullchain.pem;
         ssl_certificate_key $(pwd)/privkey.pem;
@@ -31,7 +33,6 @@ server {
        }
 
 }
-
 EOF
 nginx -s reload
 systemctl stop nginx
